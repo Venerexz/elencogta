@@ -10,72 +10,53 @@ body {
     animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Stile del titolo */
-h1.modern-wow-title {
-    font-size: 3.5em;
+h1 {
+    font-size: 3em;
+    margin-top: 20px;
     text-align: center;
     font-weight: bold;
-    color: #f8f9fa;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #f8d442, #42a5f5);
-    background-clip: text;
+    color: #f8d442;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, #f8d442, #f39c12, #e67e22);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    position: relative;
-    overflow: visible; /* Consente di vedere le linee */
-    animation: gradientShift 3s ease-in-out infinite;
-    z-index: 1; /* Assicura che il testo sia sopra le linee */
+    animation: gradientSlide 3s infinite;
 }
 
-/* Linee decorative */
-h1.modern-wow-title::before,
-h1.modern-wow-title::after {
+/* Linee animate sotto il titolo */
+h1::after {
     content: '';
     position: absolute;
-    height: 3px;
-    width: 60%;
-    background: linear-gradient(90deg, #f8d442, #42a5f5);
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: -1; /* Sposta le linee dietro al testo */
-    animation: slideLines 3s ease-in-out infinite;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #f8d442, #f39c12, #e67e22);
+    animation: lineMove 3s linear infinite;
 }
 
-h1.modern-wow-title::before {
-    left: -10%;
-    border-radius: 0 50px 50px 0;
-}
-
-h1.modern-wow-title::after {
-    right: -10%;
-    border-radius: 50px 0 0 50px;
-}
-
-/* Effetti animati */
-@keyframes gradientShift {
+/* Animazione gradiente del testo */
+@keyframes gradientSlide {
     0% {
         background-position: 0%;
-    }
-    50% {
-        background-position: 50%;
     }
     100% {
         background-position: 100%;
     }
 }
 
-@keyframes slideLines {
+/* Animazione delle linee */
+@keyframes lineMove {
     0% {
-        width: 0%;
-    }
-    50% {
-        width: 80%;
+        background-position: 0%;
     }
     100% {
-        width: 60%;
+        background-position: 100%;
     }
 }
+
 
 
 p {
@@ -281,62 +262,6 @@ p {
     /* Sfondo più chiaro quando hover */
     box-shadow: 0 10px 30px rgba(255, 223, 0, 0.7);
 }
-
-
-
-
-/* Pulsante */
-#update-button {
-    margin: 30px 0;
-    padding: 15px 40px;
-    font-size: 1.5em;
-    color: #fff;
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-#update-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 300%;
-    height: 100%;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
-    transform: skewX(-45deg);
-    transition: transform 0.6s ease;
-}
-
-#update-button:hover::before {
-    transform: skewX(-45deg) translateX(100%);
-}
-
-#update-button:hover {
-    transform: translateY(-5px);
-    background: linear-gradient(135deg, #ff6a88, #ff5733);
-    box-shadow: 0 15px 25px rgba(255, 90, 120, 0.6);
-}
-
-/* Testo brillante */
-#update-button span {
-    position: relative;
-    z-index: 2;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: text-shadow 0.4s ease;
-}
-
-#update-button:hover span {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 90, 120, 0.8);
-}
-
 
 /* Footer */
 footer {
