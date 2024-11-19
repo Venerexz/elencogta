@@ -1,0 +1,384 @@
+/* Stile generale */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Stile del titolo */
+h1.modern-wow-title {
+    font-size: 3.5em;
+    text-align: center;
+    font-weight: bold;
+    color: #f8f9fa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #f8d442, #42a5f5);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    overflow: visible; /* Consente di vedere le linee */
+    animation: gradientShift 3s ease-in-out infinite;
+    z-index: 1; /* Assicura che il testo sia sopra le linee */
+}
+
+/* Linee decorative */
+h1.modern-wow-title::before,
+h1.modern-wow-title::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 60%;
+    background: linear-gradient(90deg, #f8d442, #42a5f5);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1; /* Sposta le linee dietro al testo */
+    animation: slideLines 3s ease-in-out infinite;
+}
+
+h1.modern-wow-title::before {
+    left: -10%;
+    border-radius: 0 50px 50px 0;
+}
+
+h1.modern-wow-title::after {
+    right: -10%;
+    border-radius: 50px 0 0 50px;
+}
+
+/* Effetti animati */
+@keyframes gradientShift {
+    0% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 50%;
+    }
+    100% {
+        background-position: 100%;
+    }
+}
+
+@keyframes slideLines {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 80%;
+    }
+    100% {
+        width: 60%;
+    }
+}
+
+
+p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #ddd;
+}
+
+#update-date {
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* Classifica */
+.classifica {
+    margin: 30px auto;
+    padding: 30px;
+    max-width: 700px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    animation: slideIn 1s ease-out;
+    transform-origin: center;
+    overflow: hidden;
+    /* Per evitare che il tooltip esca dai bordi */
+    backdrop-filter: blur(10px);
+    /* Sfocatura leggera dello sfondo */
+}
+
+/* Animazione per la comparsa della classifica */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.classifica .player {
+    font-size: 1.8em;
+    margin: 15px 0;
+    padding: 12px 20px;
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(135deg, #1e1e2f, #3e3e56);
+    border-radius: 12px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Effetto hover per il giocatore */
+.classifica .player:hover {
+    transform: translateY(-15px) scale(1.07);
+    color: #f8d442;
+    box-shadow: 0 10px 30px rgba(255, 223, 0, 0.6);
+    z-index: 10;
+    /* Porta l'elemento in primo piano */
+}
+
+/* Effetto 3D per il giocatore */
+.classifica .player::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 223, 0, 0.1);
+    border-radius: 12px;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+}
+
+.classifica .player:hover::before {
+    transform: scale(1.1);
+    opacity: 0.6;
+    filter: blur(8px);
+}
+
+/* Tooltip */
+.classifica .player[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease-in-out, visibility 0.3s ease;
+    transform-origin: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.classifica .player:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(10px);
+    /* Effetto di discesa fluido */
+}
+
+/* Animazione per il tooltip */
+@keyframes tooltipSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stile specifico per i primi tre classificati */
+.classifica .player:nth-child(1) {
+    background: linear-gradient(135deg, #f8d442, #f9c922);
+    /* Oro */
+    animation: shineGold 1.5s ease-in-out infinite;
+}
+
+.classifica .player:nth-child(2) {
+    background: linear-gradient(135deg, #c0c0c0, #a8a8a8);
+    /* Argento */
+    animation: shineSilver 1.5s ease-in-out infinite;
+}
+
+.classifica .player:nth-child(3) {
+    background: linear-gradient(135deg, #cd7f32, #b87333);
+    /* Bronzo */
+    animation: shineBronze 1.5s ease-in-out infinite;
+}
+
+/* Animazioni brillanti per i primi tre */
+@keyframes shineGold {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 223, 0, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(255, 223, 0, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(255, 223, 0, 0.6);
+    }
+}
+
+@keyframes shineSilver {
+    0% {
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(192, 192, 192, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.6);
+    }
+}
+
+@keyframes shineBronze {
+    0% {
+        box-shadow: 0 0 15px rgba(205, 127, 50, 0.6);
+    }
+
+    50% {
+        box-shadow: 0 0 25px rgba(205, 127, 50, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px rgba(205, 127, 50, 0.6);
+    }
+}
+
+/* Stile specifico per i primi tre classificati */
+.classifica .player:nth-child(1) {
+    background: linear-gradient(135deg, #f8d442, #f9c922);
+    /* Oro */
+    animation: shineGold 1.5s ease-in-out infinite;
+}
+
+.classifica .player:nth-child(1):hover {
+    color: #1e1e2f;
+    /* Colore del testo quando il primo posto è in hover */
+    background: linear-gradient(135deg, #ffd700, #f9c922);
+    /* Sfondo più chiaro quando hover */
+    box-shadow: 0 10px 30px rgba(255, 223, 0, 0.7);
+}
+
+
+
+
+/* Pulsante */
+#update-button {
+    margin: 30px 0;
+    padding: 15px 40px;
+    font-size: 1.5em;
+    color: #fff;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+#update-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    transform: skewX(-45deg);
+    transition: transform 0.6s ease;
+}
+
+#update-button:hover::before {
+    transform: skewX(-45deg) translateX(100%);
+}
+
+#update-button:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, #ff6a88, #ff5733);
+    box-shadow: 0 15px 25px rgba(255, 90, 120, 0.6);
+}
+
+/* Testo brillante */
+#update-button span {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: text-shadow 0.4s ease;
+}
+
+#update-button:hover span {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 90, 120, 0.8);
+}
+
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #aaa;
+    animation: fadeIn 2s ease-in-out;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Animazioni */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 223, 0, 0.5), 0 0 20px rgba(255, 223, 0, 0.3);
+    }
+
+    to {
+        text-shadow: 0 0 20px rgba(255, 223, 0, 1), 0 0 40px rgba(255, 223, 0, 0.7);
+    }
+}
